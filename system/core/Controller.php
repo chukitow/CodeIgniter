@@ -75,6 +75,7 @@ class CI_Controller {
 	 */
 	public function _remap($method, $params = array())
 	{
+		
 	    if (method_exists($this, $method)){
 
 
