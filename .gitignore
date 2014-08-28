@@ -17,3 +17,7 @@ application/controllers/*
 application/models/*
 application/views/*
 application/config/*
+
+# But not these files...
+!.gitignore
+!application/controllers/ci.php
