@@ -79,13 +79,7 @@ class CI_Controller {
 
 
 	        call_user_func_array(array($this, $method), $params);
-	        $this->setLayout($this->layout);
-
-
-
-			if (!in_array($this->router->method, $this->ajax)) {
-				$this->view(strtolower($this->router->class)."/".$this->router->method, $this->data);
-			}
+	   
 	    }
 	    else{
 
@@ -116,6 +110,9 @@ class CI_Controller {
 		$this->load->initialize();
 		$mod_path = APPPATH . 'models/';
 		if(file_exists($mod_path)) $this->_read_model_dir($mod_path);
+		$this->setLayout($this->layout);
+		if (!in_array($this->router->method, $this->ajax)) $this->view(strtolower($this->router->class)."/".$this->router->method, $this->data);
+			
 		log_message('debug', 'Controller Class Initialized');
 	}
 
