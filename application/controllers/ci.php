@@ -86,6 +86,8 @@ class Ci extends CI_Controller {
 
 	}
 
+
+
 	private function views($controller , $params = array())
 	{
 		mkdir(FCPATH.$this->views_path.$controller);
@@ -145,6 +147,7 @@ class Ci extends CI_Controller {
 	{
 
 	}
+
 
 	private function assets()
 	{
