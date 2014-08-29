@@ -127,7 +127,7 @@ class Ci extends CI_Controller {
 				$fields[$field[0]] = array(
 					
 					'type'=> (count($field) >=2)?$field[1]:"VARCHAR",
-					'constraint'=>(count($field) >=2 && $field[1]=="int")?"11":"250"
+					'constraint'=>$this->defineConstraint($field),
 
 				
 				); 
@@ -191,6 +191,30 @@ class Ci extends CI_Controller {
 		}
 		return $structure;
 		
+	}
+
+	private function defineConstraint($field)
+	{
+		if (count($field)>=2) {
+			echo $field[1];
+			$contraint = 0;
+			switch ($field[1]) {
+				case "text":
+					$contraint = 500;
+					break;
+				
+				case "int":
+					$contraint = 11;
+					break;
+			}
+
+			return $contraint;
+
+		}
+		else{
+			return 11;
+		}
+
 	}
 
 

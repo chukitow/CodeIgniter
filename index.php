@@ -263,15 +263,8 @@ switch (ENVIRONMENT)
 	}
 
 	define('VIEWPATH', $view_folder);
+	
 
-
-/*
- * --------------------------------------------------------------------
- * LOAD THE COMPOSER AUTOLOAD FILE
- * --------------------------------------------------------------------
- */
- 
-require 'vendor/autoload.php'; 	
 
 /*
  * --------------------------------------------------------------------
@@ -283,7 +276,6 @@ require 'vendor/autoload.php';
 require_once BASEPATH.'core/CodeIgniter.php';
 
 
-require_once($application_folder.'/models/connection.php');
 
 /* End of file index.php */
 /* Location: ./index.php */

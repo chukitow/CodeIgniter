@@ -109,11 +109,11 @@ class CI_Controller {
 
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
-		$mod_path = APPPATH . 'models/';
-		if(file_exists($mod_path)) $this->_read_model_dir($mod_path);
+		$this->load->library('elegant/elegant');
+
 		$this->setLayout($this->layout);
 		if (!in_array($this->router->method, $this->ajax)) $this->view(strtolower($this->router->class)."/".$this->router->method, $this->data);
-			
+
 		log_message('debug', 'Controller Class Initialized');
 	}
 
@@ -130,37 +130,6 @@ class CI_Controller {
 		return self::$instance;
 	}
 
-	/**
-	 *  Open model directories recursively and load the models inside
-	 *@params dirpath
-	 *dirpath:	model path 
-	 */
-	private function _read_model_dir($dirpath)
-	{
-		$ci =& get_instance();
-
-		$handle = opendir($dirpath);
-		if(!$handle) return;
-
-		while (false !== ($filename = readdir($handle)))
-		{
-			if($filename == "." or $filename == "..") continue;
-
-			$filepath = $dirpath.$filename;
-			if(is_dir($filepath))
-				$this->_read_model_dir($filepath);
-
-			elseif(strpos(strtolower($filename), '.php') !== false)
-			{
-				$name = strtolower($filepath);
-				require_once $name;
-			}
-
-			else continue;
-		}
-
-		closedir($handle);
-	}
 
 	/**
 	 *	set the layout controller
